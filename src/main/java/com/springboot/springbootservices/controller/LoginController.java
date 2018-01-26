@@ -2,13 +2,11 @@ package com.springboot.springbootservices.controller;
 
 import com.springboot.springbootservices.enums.LoginStatus;
 import com.springboot.springbootservices.model.User;
+import com.springboot.springbootservices.response.ServiceResponse;
 import com.springboot.springbootservices.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -19,9 +17,11 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public String authenticate(@RequestBody User user){
+    public ServiceResponse authenticate(@RequestBody User user){
         LoginStatus status = loginService.authenticate(user.getUsername(), user.getPassword());
-        return status.name();
+        ServiceResponse response = new ServiceResponse();
+        response.setResponse(status.name());
+        return response;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

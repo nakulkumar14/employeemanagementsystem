@@ -1,5 +1,6 @@
+
 var app = angular.module('app',[]);
-app.controller('LoginController',function($scope,$growl,$http){
+app.controller('LoginController',function($scope,$http){
 
     $scope.login = function(username,password){
         var user = {
@@ -10,13 +11,15 @@ app.controller('LoginController',function($scope,$growl,$http){
             url : "/login/authenticate",
             method : "POST",
             data : user
-        }).success(function(data) {
-            growl.info(data);
-            console.log("authenticate"+data);
-        }).error(function(data, status, headers, config) {
-            growl.error("Unable to send for picking");
-            console.log("authenticate"+error);
+        }).success(function(response) {
+            console.log("authenticate"+response);
+        }).error(function(response) {
+            console.log("error "+response);
         });
+    };
+
+    $scope.register = function () {
+        console.log("register");
     };
 
 });
