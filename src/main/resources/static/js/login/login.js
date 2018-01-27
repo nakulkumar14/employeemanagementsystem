@@ -1,5 +1,3 @@
-
-var app = angular.module('app',[]);
 app.controller('LoginController',function($scope,$http,$window){
 
     $scope.login = function(username,password){
@@ -14,9 +12,7 @@ app.controller('LoginController',function($scope,$http,$window){
         }).success(function(response) {
             console.log("authenticate"+response);
             if(response.response == "SUCCESS"){
-                // $location.path("/employee/getAllEmployees");
-                // $window.location.href = "/employee/getAllEmployees";
-                $window.location.href = "login.html";
+                $window.location.href = "user-profile/user-profile.html";
             }else{
                 document.getElementById("error").innerHTML = response.response;
             }
