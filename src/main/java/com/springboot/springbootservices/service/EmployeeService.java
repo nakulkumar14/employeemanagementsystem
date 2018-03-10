@@ -1,6 +1,7 @@
 package com.springboot.springbootservices.service;
 
 import com.springboot.springbootservices.enums.Gender;
+import com.springboot.springbootservices.model.CustomObject;
 import com.springboot.springbootservices.model.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,4 +33,8 @@ public interface EmployeeService {
     void addEmployee(Employee employee);
 
     void deleteEmployeeById(Long id);
+
+    List<Employee> findByFirstNameAndLastName(String firstName, String lastName);
+
+    List<CustomObject> test();
 }

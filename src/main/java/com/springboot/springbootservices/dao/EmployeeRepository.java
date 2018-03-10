@@ -1,9 +1,11 @@
 package com.springboot.springbootservices.dao;
 
 import com.springboot.springbootservices.enums.Gender;
+import com.springboot.springbootservices.model.CustomObject;
 import com.springboot.springbootservices.model.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Date;
@@ -27,4 +29,8 @@ public interface EmployeeRepository extends CrudRepository<Employee,Long> {
 
     Long countDistinctByGender(Gender gender);
 
+    List<Employee> findByFirstnameAndLastname(String firstname,String lastname);
+
+    @Query(value = "select NEW com.springboot.springbootservices.model.CustomObject(e.gender, count(e.gender)) from Employee e group by e.gender")
+    List<CustomObject> findCustomObjects();
 }

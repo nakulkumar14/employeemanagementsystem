@@ -2,6 +2,7 @@ package com.springboot.springbootservices.service.impl;
 
 import com.springboot.springbootservices.dao.EmployeeRepository;
 import com.springboot.springbootservices.enums.Gender;
+import com.springboot.springbootservices.model.CustomObject;
 import com.springboot.springbootservices.model.Employee;
 import com.springboot.springbootservices.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
@@ -78,5 +79,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployeeById(Long id) {
         employeeRepository.delete(id);
+    }
+
+    @Override
+    public List<Employee> findByFirstNameAndLastName(String firstName, String lastName) {
+        return employeeRepository.findByFirstnameAndLastname(firstName, lastName);
+    }
+
+    @Override
+    public List<CustomObject> test() {
+        List<CustomObject> customObjectList = employeeRepository.findCustomObjects();
+        log.info("customObjectList : {}",customObjectList);
+        return customObjectList;
     }
 }

@@ -1,6 +1,7 @@
 package com.springboot.springbootservices.controller;
 
 import com.springboot.springbootservices.enums.Gender;
+import com.springboot.springbootservices.model.CustomObject;
 import com.springboot.springbootservices.model.Employee;
 import com.springboot.springbootservices.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/getEmployeeById/{id}",method = RequestMethod.GET)
     public Employee getEmployeeById(@PathVariable("id") Long id){
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return employeeService.getEmployeeById(id);
     }
 
@@ -78,5 +80,15 @@ public class EmployeeController {
     @RequestMapping(value = "/deleteEmployeeById",method = RequestMethod.POST)
     public void deleteEmployeeById(@RequestBody Long id){
         employeeService.deleteEmployeeById(id);
+    }
+
+    @RequestMapping(value = "/getEmployeeByName/{firstname}/{lastname}", method = RequestMethod.GET)
+    public List<Employee> getEmployeeByName(@PathVariable("firstname") String firstname, @PathVariable("lastname") String lastname){
+        return employeeService.findByFirstNameAndLastName(firstname, lastname);
+    }
+
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public List<CustomObject> test(){
+        return employeeService.test();
     }
 }
