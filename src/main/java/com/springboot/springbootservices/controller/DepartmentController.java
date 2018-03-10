@@ -27,8 +27,8 @@ public class DepartmentController {
     }
 
     @RequestMapping(value = "/getById/{id}",method = RequestMethod.GET)
-    public Department getById(@PathVariable("id") String deptNo){
-        return departmentService.getById(deptNo);
+    public Department getById(@PathVariable("id") Integer id){
+        return departmentService.getById(id);
     }
 
     @RequestMapping(value = "/getByName/{name}", method = RequestMethod.GET)

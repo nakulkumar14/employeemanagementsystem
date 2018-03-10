@@ -1,7 +1,6 @@
 package com.springboot.springbootservices.model;
 
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -11,10 +10,8 @@ import javax.persistence.*;
 public class Department {
 
     @Id
-    @GenericGenerator(name = "sequence_dep_id", strategy = "com.springboot.springbootservices.util.DepartmentIdGenerator")
-    @GeneratedValue(generator = "sequence_dep_id")
-    @Column(name = "dept_no")
-    private String deptNo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "dept_name")
     private String deptName;

@@ -10,7 +10,7 @@ public interface DepartmentService {
 
     void addDepartment(Department department);
 
-    Department getById(String deptNo);
+    Department getById(Integer id);
 
     Department getByName(String name);
 }
