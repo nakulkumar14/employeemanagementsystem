@@ -7,4 +7,10 @@ import java.util.List;
 public interface DepartmentService {
 
     List<Department> getAllDepartments();
+
+    void addDepartment(Department department);
+
+    Department getById(String deptNo);
+
+    Department getByName(String name);
 }

@@ -4,9 +4,7 @@ import com.springboot.springbootservices.model.Department;
 import com.springboot.springbootservices.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,20 @@ public class DepartmentController {
     @RequestMapping(value = "/getAllDepartments",method = RequestMethod.GET)
     public List<Department> getAllDepartments(){
         return departmentService.getAllDepartments();
+    }
+
+    @RequestMapping(value = "/addDepartment", method = RequestMethod.POST)
+    public void addDepartment(@RequestBody Department department){
+        departmentService.addDepartment(department);
+    }
+
+    @RequestMapping(value = "/getById/{id}",method = RequestMethod.GET)
+    public Department getById(@PathVariable("id") String deptNo){
+        return departmentService.getById(deptNo);
+    }
+
+    @RequestMapping(value = "/getByName/{name}", method = RequestMethod.GET)
+    public Department getByName(@PathVariable("name") String name){
+        return departmentService.getByName(name);
     }
 }
