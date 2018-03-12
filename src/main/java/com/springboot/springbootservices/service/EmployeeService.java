@@ -3,6 +3,7 @@ package com.springboot.springbootservices.service;
 import com.springboot.springbootservices.enums.Gender;
 import com.springboot.springbootservices.model.CustomObject;
 import com.springboot.springbootservices.model.Employee;
+import com.springboot.springbootservices.request.SaveEmployeeDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -37,4 +38,6 @@ public interface EmployeeService {
     List<Employee> findByFirstNameAndLastName(String firstName, String lastName);
 
     List<CustomObject> test();
+
+    void saveEmployee(SaveEmployeeDTO employeeDTO);
 }

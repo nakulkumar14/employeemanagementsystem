@@ -1,18 +1,20 @@
 package com.springboot.springbootservices.service.impl;
 
 import com.springboot.springbootservices.dao.EmployeeRepository;
+import com.springboot.springbootservices.dao.SalaryRepository;
 import com.springboot.springbootservices.enums.Gender;
-import com.springboot.springbootservices.model.CustomObject;
-import com.springboot.springbootservices.model.Employee;
+import com.springboot.springbootservices.model.*;
+import com.springboot.springbootservices.request.SaveEmployeeDTO;
 import com.springboot.springbootservices.service.EmployeeService;
+import com.springboot.springbootservices.service.SalaryService;
+import com.springboot.springbootservices.service.TitleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Service("employeeService")
@@ -20,6 +22,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private SalaryService salaryService;
+
+    @Autowired
+    private TitleService titleService;
 
     @Override
     public List<Employee> getAllEmployees() {
@@ -91,5 +99,46 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<CustomObject> customObjectList = employeeRepository.findCustomObjects();
         log.info("customObjectList : {}",customObjectList);
         return customObjectList;
+    }
+
+    @Override
+    public void saveEmployee(SaveEmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+        employee.setGender(employeeDTO.getGender());
+        employee.setDob(employeeDTO.getDob());
+        employee.setFirstname(employeeDTO.getFirstname());
+        employee.setLastname(employeeDTO.getLastname());
+        employee.setHireDate(employeeDTO.getHireDate());
+
+        employeeRepository.save(employee);
+
+        Salary salary = new Salary();
+        salary.setSalary(employeeDTO.getSalary());
+
+        SalaryId salaryId = new SalaryId();
+        salaryId.setEmployee(employee);
+        salaryId.setFromDate(employeeDTO.getHireDate());
+
+        salary.setSalaryId(salaryId);
+        salary.setToDate(getFutureDate());
+
+        salaryService.addSalary(salary);
+
+        Title title = new Title();
+        title.setToDate(getFutureDate());
+        TitleId titleId = new TitleId();
+        titleId.setEmployee(employee);
+        titleId.setTitle("Manager");
+        titleId.setFromDate(employee.getHireDate());
+        title.setTitleId(titleId);
+
+        titleService.addTitle(title);
+    }
+
+    private Date getFutureDate(){
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(new Date());
+        instance.add(Calendar.YEAR, 100);
+        return instance.getTime();
     }
 }

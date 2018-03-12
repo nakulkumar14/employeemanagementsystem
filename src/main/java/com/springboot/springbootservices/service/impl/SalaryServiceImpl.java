@@ -37,4 +37,9 @@ public class SalaryServiceImpl implements SalaryService{
         }
         return null;
     }
+
+    @Override
+    public void addSalary(Salary salary) {
+        salaryRepository.save(salary);
+    }
 }

@@ -26,4 +26,9 @@ public class TitleServiceImpl implements TitleService{
     public List<Title> getTitleForEmpId(Long id) {
         return titleRepository.findAllByEmployeeId(id);
     }
+
+    @Override
+    public void addTitle(Title title) {
+        titleRepository.save(title);
+    }
 }

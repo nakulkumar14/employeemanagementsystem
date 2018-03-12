@@ -3,6 +3,7 @@ package com.springboot.springbootservices.controller;
 import com.springboot.springbootservices.enums.Gender;
 import com.springboot.springbootservices.model.CustomObject;
 import com.springboot.springbootservices.model.Employee;
+import com.springboot.springbootservices.request.SaveEmployeeDTO;
 import com.springboot.springbootservices.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,11 @@ public class EmployeeController {
     @RequestMapping(value = "/addEmployee",method = RequestMethod.POST)
     public void addEmployee(@RequestBody Employee employee){
         employeeService.addEmployee(employee);
+    }
+
+    @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
+    public void saveEmployee(@RequestBody SaveEmployeeDTO employeeDTO){
+        employeeService.saveEmployee(employeeDTO);
     }
 
     @RequestMapping(value = "/deleteEmployeeById",method = RequestMethod.POST)

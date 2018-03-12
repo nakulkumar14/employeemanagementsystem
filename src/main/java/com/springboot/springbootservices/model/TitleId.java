@@ -15,7 +15,7 @@ public class TitleId implements Serializable{
     @JoinColumn(name="emp_no")
     private Employee employee;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "from_date")

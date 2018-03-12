@@ -9,4 +9,6 @@ public interface SalaryService {
     List<Salary> getSalaryForEmpId(Long id);
 
     List<Salary> getSalaryForEmployeeName(String firstName, String lastName);
+
+    void addSalary(Salary salary);
 }
