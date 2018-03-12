@@ -13,6 +13,8 @@ import java.util.List;
 @Service
 public class DesignationServiceImpl implements DesignationService{
 
+    private static final String CLASS = DesignationServiceImpl.class.getSimpleName();
+
     @Autowired
     private DesignationRepository designationRepository;
 

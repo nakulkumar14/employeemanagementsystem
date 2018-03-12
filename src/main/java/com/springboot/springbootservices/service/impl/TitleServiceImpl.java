@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 public class TitleServiceImpl implements TitleService{
 
+    private static final String CLASS = TitleServiceImpl.class.getSimpleName();
+
     @Autowired
     private TitleRepository titleRepository;
 

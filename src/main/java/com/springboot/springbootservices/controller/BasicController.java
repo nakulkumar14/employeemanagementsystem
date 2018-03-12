@@ -1,18 +1,18 @@
 package com.springboot.springbootservices.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
 @RequestMapping("/basic")
 public class BasicController {
+
+    private static final String CLASS = BasicController.class.getSimpleName();
 
 //    private static final String PATH = "/error";
 

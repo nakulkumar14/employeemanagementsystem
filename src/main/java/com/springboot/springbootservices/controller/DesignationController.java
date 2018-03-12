@@ -16,6 +16,8 @@ import java.util.List;
 @RequestMapping(value = "/designation")
 public class DesignationController {
 
+    private static final String CLASS = DesignationController.class.getSimpleName();
+
     @Autowired
     private DesignationService designationService;
 

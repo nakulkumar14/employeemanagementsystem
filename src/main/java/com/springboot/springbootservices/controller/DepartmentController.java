@@ -13,6 +13,8 @@ import java.util.List;
 @RequestMapping(value = "/department")
 public class DepartmentController {
 
+    private static final String CLASS = DepartmentController.class.getSimpleName();
+
     @Autowired
     private DepartmentService departmentService;
 

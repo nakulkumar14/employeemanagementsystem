@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class DeptEmpMappingServiceImpl implements DeptEmpMappingService{
 
+    private static final String CLASS = DeptEmpMappingServiceImpl.class.getSimpleName();
+
     @Autowired
     private DeptEmpMappingRepository deptEmpMappingRepository;
 

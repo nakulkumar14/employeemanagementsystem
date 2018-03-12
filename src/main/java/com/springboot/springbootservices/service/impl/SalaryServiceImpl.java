@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 public class SalaryServiceImpl implements SalaryService{
 
+    private static final String CLASS = SalaryServiceImpl.class.getSimpleName();
+
     @Autowired
     private SalaryRepository salaryRepository;
 

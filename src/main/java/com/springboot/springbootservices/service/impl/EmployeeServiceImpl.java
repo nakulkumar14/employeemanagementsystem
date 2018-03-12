@@ -5,6 +5,7 @@ import com.springboot.springbootservices.dao.SalaryRepository;
 import com.springboot.springbootservices.enums.Gender;
 import com.springboot.springbootservices.model.*;
 import com.springboot.springbootservices.request.SaveEmployeeDTO;
+import com.springboot.springbootservices.service.DepartmentService;
 import com.springboot.springbootservices.service.EmployeeService;
 import com.springboot.springbootservices.service.SalaryService;
 import com.springboot.springbootservices.service.TitleService;
@@ -20,6 +21,8 @@ import java.util.*;
 @Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
 
+    private static final String CLASS = EmployeeServiceImpl.class.getSimpleName();
+
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -28,6 +31,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private TitleService titleService;
+
+    @Autowired
+    private DepartmentService departmentService;
 
     @Override
     public List<Employee> getAllEmployees() {
@@ -133,6 +139,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         title.setTitleId(titleId);
 
         titleService.addTitle(title);
+
+        DeptEmpMapping deptEmpMapping = new DeptEmpMapping();
+        deptEmpMapping.setFromDate(employeeDTO.getHireDate());
+        deptEmpMapping.setToDate(getFutureDate());
+
+        Department department = departmentService.getById(employeeDTO.getDeptId());
+
+        DeptEmpId deptEmpId = new DeptEmpId();
+        deptEmpId.setDepartment(department);
+        deptEmpId.setEmployee(employee);
+
+        deptEmpMapping.setDeptEmpId(deptEmpId);
     }
 
     private Date getFutureDate(){

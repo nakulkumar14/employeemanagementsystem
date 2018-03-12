@@ -13,6 +13,8 @@ import java.util.List;
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
 
+    private static final String CLASS = DepartmentServiceImpl.class.getSimpleName();
+
     @Autowired
     private DepartmentRepository departmentRepository;
 

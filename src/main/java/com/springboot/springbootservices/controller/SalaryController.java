@@ -16,6 +16,8 @@ import java.util.List;
 @RequestMapping(value = "/salary")
 public class SalaryController {
 
+    private static final String CLASS = SalaryController.class.getSimpleName();
+
     @Autowired
     private SalaryService salaryService;
 

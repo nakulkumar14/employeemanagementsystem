@@ -17,6 +17,8 @@ import java.util.List;
 @RequestMapping(value = "/title")
 public class TitleController {
 
+    private static final String CLASS = TitleController.class.getSimpleName();
+
     @Autowired
     private TitleService titleService;
 
