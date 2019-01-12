@@ -28,4 +28,25 @@ public class DesignationServiceImpl implements DesignationService{
         designation.setName(designation.getName().toUpperCase());
         designationRepository.save(designation);
     }
+
+    @Override
+    public Designation getById(Integer id) {
+        return designationRepository.findOne(id);
+    }
+
+    @Override
+    public Designation getByName(String name) {
+        return designationRepository.findByName(name);
+    }
+
+    @Override
+    public void removeDesignationById(Integer id) {
+        designationRepository.delete(id);
+    }
+
+    @Override
+    public void removeDesignationByName(String name) {
+        Designation designation = designationRepository.findByName(name);
+        designationRepository.delete(designation.getId());
+    }
 }

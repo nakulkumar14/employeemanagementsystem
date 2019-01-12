@@ -13,4 +13,8 @@ public interface DepartmentService {
     Department getById(Integer id);
 
     Department getByName(String name);
+
+    void removeDepartmentById(Integer id);
+
+    void removeDepartmentByName(String name);
 }

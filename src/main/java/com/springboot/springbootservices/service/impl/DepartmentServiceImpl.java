@@ -37,4 +37,15 @@ public class DepartmentServiceImpl implements DepartmentService{
     public Department getByName(String name) {
         return departmentRepository.findByDeptName(name);
     }
+
+    @Override
+    public void removeDepartmentById(Integer id) {
+        departmentRepository.delete(id);
+    }
+
+    @Override
+    public void removeDepartmentByName(String name) {
+        Department department = departmentRepository.findByDeptName(name);
+        departmentRepository.delete(department.getId());
+    }
 }

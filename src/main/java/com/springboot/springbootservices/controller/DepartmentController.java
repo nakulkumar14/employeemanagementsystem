@@ -37,4 +37,14 @@ public class DepartmentController {
     public Department getByName(@PathVariable("name") String name){
         return departmentService.getByName(name);
     }
+
+    @GetMapping(value = "/removeDepartmentById/{id}")
+    public void removeDepartmentById(@PathVariable("id") Integer id){
+        departmentService.removeDepartmentById(id);
+    }
+
+    @GetMapping(value = "/removeDepartmentByName/{name}")
+    public void removeDepartmentByName(@PathVariable("name") String name){
+        departmentService.removeDepartmentByName(name);
+    }
 }

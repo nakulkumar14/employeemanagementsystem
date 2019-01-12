@@ -1,13 +1,11 @@
 package com.springboot.springbootservices.controller;
 
+import com.springboot.springbootservices.model.Department;
 import com.springboot.springbootservices.model.Designation;
 import com.springboot.springbootservices.service.DesignationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +28,26 @@ public class DesignationController {
     public void save(@RequestBody Designation designation){
         designationService.save(designation);
     }
+
+    @GetMapping(value = "/getById/{id}")
+    public Designation getById(@PathVariable("id") Integer id){
+        return designationService.getById(id);
+    }
+
+    @GetMapping(value = "/getByName/{name}")
+    public Designation getByName(@PathVariable("name") String name){
+        return designationService.getByName(name);
+    }
+
+    @GetMapping(value = "/removeDesignationById/{id}")
+    public void removeDesignationById(@PathVariable("id") Integer id){
+        designationService.removeDesignationById(id);
+    }
+
+    @GetMapping(value = "/removeDesignationByName/{name}")
+    public void removeDesignationByName(@PathVariable("name") String name){
+        designationService.removeDesignationByName(name);
+    }
+
+
 }

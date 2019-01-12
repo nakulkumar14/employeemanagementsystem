@@ -140,17 +140,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         titleService.addTitle(title);
 
-        DeptEmpMapping deptEmpMapping = new DeptEmpMapping();
-        deptEmpMapping.setFromDate(employeeDTO.getHireDate());
-        deptEmpMapping.setToDate(getFutureDate());
-
-        Department department = departmentService.getById(employeeDTO.getDeptId());
-
-        DeptEmpId deptEmpId = new DeptEmpId();
-        deptEmpId.setDepartment(department);
-        deptEmpId.setEmployee(employee);
-
-        deptEmpMapping.setDeptEmpId(deptEmpId);
+//        DeptEmpMapping deptEmpMapping = new DeptEmpMapping();
+//        deptEmpMapping.setFromDate(employeeDTO.getHireDate());
+//        deptEmpMapping.setToDate(getFutureDate());
+//
+//        Department department = departmentService.getById(employeeDTO.getDeptId());
+//
+//        DeptEmpId deptEmpId = new DeptEmpId();
+//        deptEmpId.setDepartment(department);
+//        deptEmpId.setEmployee(employee);
+//
+//        deptEmpMapping.setDeptEmpId(deptEmpId);
     }
 
     private Date getFutureDate(){
